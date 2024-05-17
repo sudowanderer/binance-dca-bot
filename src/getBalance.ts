@@ -19,7 +19,6 @@ export const getBalance = async (asset: string): Promise<string> => {
     try {
         const accountInfo = await client.accountInformation();
         const balance = accountInfo.balances.find(b => b.asset === asset);
-        console.log(`Current ${asset} Balance: ${balance ? balance.free : '0'} ${asset}`);
         return balance ? balance.free : '0';
     } catch (error) {
         console.error('Error fetching balance:', error);
