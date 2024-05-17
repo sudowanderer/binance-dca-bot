@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@types/jasmine": "^5.1.4",
+    "jasmine": "^5.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
+  },
+  "dependencies": {
+    "@binance/connector-typescript": "^0.3.7",
+    "dotenv": "^16.4.5"
+  }
+}
