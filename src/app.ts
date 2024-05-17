@@ -5,13 +5,15 @@ import {getBalance} from "./getBalance";
 dotenv.config();
 
 // 检查环境变量是否设置
-const symbol = process.env.SYMBOL;
+const targetAsset = process.env.TARGET_ASSET;
 const amountStr = process.env.AMOUNT;
 const orderCurrency = process.env.ORDER_CURRENCY;
 
-if (!symbol || !amountStr || !orderCurrency) {
-    throw new Error('Environment variables SYMBOL, AMOUNT, and ORDER_CURRENCY must be set');
+if (!targetAsset || !amountStr || !orderCurrency) {
+    throw new Error('Environment variables TARGET_ASSET, AMOUNT, and ORDER_CURRENCY must be set');
 }
+// 拼凑 SYMBOL
+const symbol = `${targetAsset}${orderCurrency}`;
 
 // 转换数值类型
 const amount = parseFloat(amountStr);
@@ -37,7 +39,7 @@ const executeDCA = async () => {
         console.log(`Remaining ${orderCurrency} Balance: ${balance} ${orderCurrency}`);
     } catch (error) {
         if (error instanceof Error) {
-            console.error('Error during DCA process:', error.message);
+            console.error('Error during DCA process:', error);
         } else {
             console.error('Unexpected error type:', error);
         }
