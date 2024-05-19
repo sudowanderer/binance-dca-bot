@@ -1,21 +1,25 @@
 # Binance DCA Bot
 
-A simple Dollar-Cost Averaging (DCA) bot for the Binance platform, developed using TypeScript. This bot automatically buys a specified cryptocurrency at regular intervals using the Binance API and deploys using AWS Lambda to take advantage of the free tier.
+A simple Dollar-Cost Averaging (DCA) bot for the Binance platform, developed using TypeScript. This bot automatically buys a specified cryptocurrency at regular intervals using the Binance API and deploys using Docker.
+
+## Docker Hub
+
+The Docker image for this project is available on Docker Hub: [binance-dca-bot](https://hub.docker.com/r/sudowanderer/binance-dca-bot)
 
 ## Features
 
-- **Automatic DCA**: Automatically buys the specified cryptocurrency at regular intervals.
+- **Automatic DCA**: Automatically buys the specified cryptocurrency.
 - **Configurable**: Easily configure target asset, order amount, and order currency through environment variables.
-- **AWS Lambda Deployment**: Leverages AWS Lambda for serverless deployment, reducing costs and simplifying infrastructure management.
+- Local Docker deployment
 
 ## Prerequisites
 
-- Node.js and npm installed
-- Binance API Key and Secret
-- AWS account (for Lambda deployment)
-- TypeScript
+- Node.js (v20 LTS)
+- Docker
+- Docker Compose (optional)
+- Git
 
-## Installation
+## Setup
 
 1. Clone the repository:
 
@@ -39,10 +43,39 @@ A simple Dollar-Cost Averaging (DCA) bot for the Binance platform, developed usi
     AMOUNT=100
     ORDER_CURRENCY=USDC
     ```
+4. Build and run locally。
+   ```shell
+   npm start
+   ```
 
-## Usage
+## Local Docker Deployment
+### Build Docker image
 
-To run the bot locally:
+To build the Docker image locally:
 
 ```bash
-npm start
+docker build -t binance-dca-bot .
+```
+### Run Docker container
+To run the Docker container:
+```shell
+docker run -d --name binance-dca-bot --env-file .env binance-dca-bot
+```
+
+### Docker Compose (optional)
+If you prefer using Docker Compose, create a docker-compose.yml file:
+
+```yaml
+version: '3.8'
+
+services:
+  binance-dca-bot:
+    build: .
+    env_file:
+      - .env
+    restart: always
+```
+Run the container using Docker Compose:
+```shell
+docker-compose up -d
+```
