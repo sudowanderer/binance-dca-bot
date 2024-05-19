@@ -2,13 +2,11 @@ name: Build and Publish Docker image
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*.*.*'
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,9 +22,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:latest
+            ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:${{ steps.meta.outputs.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:${{ steps.meta.outputs.version }}
