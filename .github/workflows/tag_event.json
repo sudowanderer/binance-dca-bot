@@ -1,0 +1,20 @@
+{
+  "ref": "refs/tags/v0.1.0",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "e5bd3914e2e596debea16f433f57875b5b90c30b",
+  "repository": {
+    "id": 1296269,
+    "node_id": "MDEwOlJlcG9zaXRvcnkxMjk2MjY5",
+    "name": "binance-dca-bot",
+    "full_name": "YOUR_GITHUB_USERNAME/binance-dca-bot",
+    "private": false,
+    "owner": {
+      "name": "YOUR_GITHUB_USERNAME",
+      "email": "YOUR_EMAIL"
+    }
+  },
+  "pusher": {
+    "name": "YOUR_GITHUB_USERNAME",
+    "email": "YOUR_EMAIL"
+  }
+}

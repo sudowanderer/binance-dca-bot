@@ -8,6 +8,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env: # 在整个 job 中设置环境变量
+      DOCKER_USERNAME: sudowanderer
 
     steps:
       - name: Checkout code
@@ -19,14 +21,20 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ env.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot
+          images: ${{ env.DOCKER_USERNAME }}/binance-dca-bot
+
+      - name: Debug metadata
+        run: |
+          echo "Username: ${{ env.DOCKER_USERNAME }}"
+          echo "SHA: $GITHUB_SHA"
+          echo "Version: ${{ steps.meta.outputs.version }}"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -34,6 +42,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:latest
-            ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:${{ steps.meta.outputs.sha }}
-            ${{ secrets.DOCKER_USERNAME }}/binance-dca-bot:${{ steps.meta.outputs.version }}
+            ${{ env.DOCKER_USERNAME }}/binance-dca-bot:latest
+            ${{ env.DOCKER_USERNAME }}/binance-dca-bot:${{ github.sha}}
+            ${{ env.DOCKER_USERNAME }}/binance-dca-bot:${{ steps.meta.outputs.version }}
