@@ -13,5 +13,6 @@
   "dependencies": {
     "@binance/connector-typescript": "^0.3.7",
     "dotenv": "^16.4.5"
-  }
+  },
+  "version": "0.1.0"
 }
