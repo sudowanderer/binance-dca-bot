@@ -22,13 +22,6 @@ echo "Releasing version $NEXT_VERSION..."
 # 更新 package.json 中的版本号（去掉v前缀）
 npm version $RAW_VERSION --no-git-tag-version
 
-## 更新 .env 文件中的版本号
-#if grep -q "APPLICATION_VERSION=" .env; then
-#  sed -i '' "s/^APPLICATION_VERSION=.*/APPLICATION_VERSION=$NEXT_VERSION/" .env
-#else
-#  echo "APPLICATION_VERSION=$NEXT_VERSION" >> .env
-#fi
-
 # 提交更改并创建标签
 git commit -am "VAR: Bump version to $NEXT_VERSION."
 git tag -a "$NEXT_VERSION" -m "Release $NEXT_VERSION."

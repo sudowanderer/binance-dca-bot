@@ -10,6 +10,7 @@ The Docker image for this project is available on Docker Hub: [binance-dca-bot](
 
 - **Automatic DCA**: Automatically buys the specified cryptocurrency.
 - **Configurable**: Easily configure target asset, order amount, and order currency through environment variables.
+- **Scheduled Execution**: Schedule the bot to run at specific intervals using cron jobs.
 - Local Docker deployment
 
 ## Prerequisites
@@ -24,7 +25,7 @@ The Docker image for this project is available on Docker Hub: [binance-dca-bot](
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/binance-dca-bot.git
+    git clone https://github.com/sudowanderer/binance-dca-bot.git
     cd binance-dca-bot
     ```
 
@@ -42,6 +43,8 @@ The Docker image for this project is available on Docker Hub: [binance-dca-bot](
     TARGET_ASSET=BTC
     AMOUNT=100
     ORDER_CURRENCY=USDC
+    CRON_SCHEDULE=0 12 * * *
+    TIMEZONE=Asia/Shanghai
     ```
 4. Build and run locally。
    ```shell
