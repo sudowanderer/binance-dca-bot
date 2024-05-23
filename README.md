@@ -11,6 +11,7 @@ The Docker image for this project is available on Docker Hub: [binance-dca-bot](
 - **Automatic DCA**: Automatically buys the specified cryptocurrency.
 - **Configurable**: Easily configure target asset, order amount, and order currency through environment variables.
 - **Scheduled Execution**: Schedule the bot to run at specific intervals using cron jobs.
+- **Telegram Notification**：Send notifications via Telegram when the balance falls below a specified threshold. 
 - Local Docker deployment
 
 ## Prerequisites
@@ -43,6 +44,9 @@ The Docker image for this project is available on Docker Hub: [binance-dca-bot](
     TARGET_ASSET=BTC
     AMOUNT=100
     ORDER_CURRENCY=USDC
+    TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+    TELEGRAM_CHAT_ID=your_telegram_chat_id
+    BALANCE_THRESHOLD=100
     CRON_SCHEDULE=0 12 * * *
     TIMEZONE=Asia/Shanghai
     ```
