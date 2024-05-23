@@ -7,7 +7,7 @@ dotenv.config();
 describe('Integration Test for buyWithQuoteAsset', () => {
     it('should successfully place an order and return the order response', async () => {
         const symbol = 'BTCUSDC';
-        const amount = 10; // 使用一个较小的金额进行测试，避免大量资金消耗
+        const amount = 1; // 使用一个较小的金额进行测试，避免大量资金消耗
 
         try {
             const orderResponse = await buyWithQuoteAsset(symbol, amount);
