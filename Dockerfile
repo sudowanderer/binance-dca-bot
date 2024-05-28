@@ -1,9 +1,6 @@
 # 第一阶段：构建阶段
 FROM node:20-alpine AS builder
 
-# 安装必要的软件包
-RUN apk add --no-cache bash busybox-suid tzdata
-
 # 设置工作目录
 WORKDIR /usr/src/app
 
@@ -21,6 +18,9 @@ RUN npm run build
 
 # 第二阶段：最终镜像
 FROM node:20-alpine
+
+# 安装必要的软件包
+RUN apk add --no-cache bash busybox-suid tzdata
 
 # 设置工作目录
 WORKDIR /usr/src/app

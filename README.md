@@ -48,7 +48,7 @@ The Docker image for this project is available on Docker Hub: [binance-dca-bot](
     TELEGRAM_CHAT_ID=your_telegram_chat_id
     BALANCE_THRESHOLD=100
     CRON_SCHEDULE=0 12 * * *
-    TIMEZONE=Asia/Shanghai
+    TZ=Asia/Shanghai
     ```
 4. Build and run locally。
    ```shell
