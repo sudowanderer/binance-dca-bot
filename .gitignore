@@ -133,3 +133,4 @@ dist
 # idea
 .idea
 .secrets
+.DS_Store
