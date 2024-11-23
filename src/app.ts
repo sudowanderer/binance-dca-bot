@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { buyWithQuoteAsset, OrderResponse } from './buyWithQuoteAsset';
+import {buyWithQuoteAsset, OrderResponse} from './buyWithQuoteAsset';
 import {getBalance} from "./getBalance";
 import {TelegramNotifier} from "./notifiers/telegramNotifier";
 import {Notifier} from "./notifiers/notifier";
@@ -55,10 +55,11 @@ const executeDCA = async () => {
     } catch (error) {
         if (error instanceof Error) {
             console.error('Error during DCA process:', error);
+            if (notifier)
+                await notifier.sendNotification(`Error during DCA process: ${error}.`);
         } else {
             console.error('Unexpected error type:', error);
         }
     }
 };
-
 executeDCA();

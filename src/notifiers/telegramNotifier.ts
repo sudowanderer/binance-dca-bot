@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Notifier } from './notifier';
+import {Notifier} from './notifier';
 
 export class TelegramNotifier implements Notifier {
     private readonly botToken: string;
@@ -16,14 +16,17 @@ export class TelegramNotifier implements Notifier {
             return;
         }
 
+        const options = {timeZone: 'Asia/Shanghai', hour12: false};
+        const currentTime = new Date().toLocaleString('zh-cn', options);
+
         const url = `https://api.telegram.org/bot${this.botToken}/sendMessage`;
         const params = {
             chat_id: this.chatId,
-            text: message,
+            text: `${message}\n${currentTime}`,
         };
 
         try {
-            await axios.get(url, { params });
+            await axios.get(url, {params});
         } catch (error) {
             console.error('Error sending Telegram notification:', error);
         }
