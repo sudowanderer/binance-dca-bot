@@ -1,13 +1,17 @@
 {
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
     "@types/jasmine": "^5.1.4",
+    "esbuild": "^0.24.0",
     "jasmine": "^5.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
     "start": "ts-node src/app.ts",
-    "build": "tsc",
+    "prebuild": "rm -rf dist",
+    "build": "esbuild src/index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "postbuild": "cd dist && zip -r index.zip index.js*",
     "test": "ts-node node_modules/jasmine/bin/jasmine"
   },
   "dependencies": {
